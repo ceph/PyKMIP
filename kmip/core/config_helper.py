@@ -60,9 +60,13 @@ class ConfigHelper(object):
 
         if self.conf.read(filenames):
             self.logger.debug("Using config file at {0}".format(filenames))
-        else:
+        elif path:
             self.logger.warning(
                 "Config file {0} not found".format(filenames))
+        else:
+            self.logger.debug(
+                "No config file found in {0}, using defaults".format(
+                    filenames))
 
     def get_valid_value(self, direct_value, config_section,
                         config_option_name, default_value):
